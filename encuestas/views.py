@@ -3,6 +3,11 @@ from django.shortcuts import redirect, render
 from encuestas.forms import PreguntaForm
 from encuestas.models import Pregunta
 
+
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
+
 # Create your views here.
 """
 def index(request):
@@ -43,4 +48,10 @@ def add_pregunta(request):
         else:
             return HttpResponse('Error: Revise los datos del formulario')
     else:
+        return redirect('/encuestas/')
+    
+def sing_up(request):
+    if request.method == 'GET':
+        return render(request,'encuestas/singup.html',{})
+    elif request.method == 'POST':
         return redirect('/encuestas/')
