@@ -7,7 +7,8 @@ from encuestas.models import Pregunta
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
-
+from django.contrib.auth import login
+from django.contrib.auth.models import User
 # Create your views here.
 """
 def index(request):
@@ -57,4 +58,13 @@ def sign_up(request):
         return render(request,'encuestas/signup.html',formulario)
     
     elif request.method == 'POST':
+        form = FormaRegistro(request.POST)
+        if form.is_valid():
+            form.save()
+            listado = User.objects.all()
+            contexto = {"usuarios":listado, 'mensaje':'se agrego un wn'}
+            return render(request,'encuestas/index.html',contexto)
+        else:
+            return render(request, 'encuestas/signup.html', {'form': form})
+    else:
         return redirect('/encuestas/')
