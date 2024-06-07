@@ -50,11 +50,11 @@ def add_pregunta(request):
     else:
         return redirect('/encuestas/')
     
-def sing_up(request):
+def sign_up(request):
     if request.method == 'GET':
         form = FormaRegistro()
         formulario = ({'form':form})
-        return render(request,'encuestas/singup.html',formulario)
+        return render(request,'encuestas/signup.html',formulario)
     
     elif request.method == 'POST':
         return redirect('/encuestas/')

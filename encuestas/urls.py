@@ -14,6 +14,6 @@ urlpatterns = [
 
     # /encuestas/pregunta/agregar
     path("pregunta/agregar/", views.add_pregunta, name="add_pregunta"),
-    # /encuestas/singup
-    path("singup/", views.sing_up, name="sing_up"),
+    # /encuestas/signup
+    path("signup/", views.sign_up, name="sign_up"),
 ]
