@@ -16,18 +16,30 @@
              username, email, password1, password2-->
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <table>
+                    {{ form.as_table }}
+                </table>
+
+                <div class="mb-3">
+                    <label for="id_nombreusuario" class="form-label">Nombre:</label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_nombreusuario" class="form-label">Email:</label>
+                    
+                    {{ form.email }}
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            Obligatorio. 150 caracteres o menos, letras, digitos y @/./+/-/_ unicamente.
+                        </li>
+                    </ul>
+                </div>
+
+                
                 <button type="submit">Sign Up</button>    
             </form>
 
-            <table>
-                {{ form.as_table }}
-            </table>
-
-            <label class="form-label">
-                {{ form.username }}
-            </label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
             
     </div>
 
