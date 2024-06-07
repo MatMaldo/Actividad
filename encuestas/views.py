@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from encuestas.forms import PreguntaForm
+from encuestas.forms import PreguntaForm, FormaRegistro
 from encuestas.models import Pregunta
 
 
@@ -52,6 +52,9 @@ def add_pregunta(request):
     
 def sing_up(request):
     if request.method == 'GET':
-        return render(request,'encuestas/singup.html',{})
+        form = FormaRegistro()
+        formulario = ({'form':form})
+        return render(request,'encuestas/singup.html',formulario)
+    
     elif request.method == 'POST':
         return redirect('/encuestas/')
