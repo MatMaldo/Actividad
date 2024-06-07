@@ -59,12 +59,22 @@ def sign_up(request):
     
     elif request.method == 'POST':
         form = FormaRegistro(request.POST)
+        
         if form.is_valid():
-            form.save()
-            listado = User.objects.all()
-            contexto = {"usuarios":listado, 'mensaje':'se agrego un wn'}
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password1']  # Tomamos la contraseña del primer campo
+            
+            # Creamos el usuario
+            User.objects.create_user(username=username, email=email, password=password)
+
+            listado2 = User.objects.all()
+            contexto = {"personas":listado2, 'usuariocreado':'se creo usuario'}
+            
             return render(request,'encuestas/index.html',contexto)
         else:
             return render(request, 'encuestas/signup.html', {'form': form})
+
     else:
         return redirect('/encuestas/')
+    
